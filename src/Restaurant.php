@@ -5,16 +5,16 @@
         private $name;
         private $review;
         private $stars;
-        private $type_id;
-        private $id;
+        // private $type_id;
+        // private $id;
 
-        function __construct($name, $review, $stars, $type_id, $id = null)
+        function __construct($name, $review, $stars, /*$type_id, $id = null*/)
         {
             $this->name = $name;
             $this->review = $review;
             $this->stars = $stars;
-            $this->type_id = $type_id;
-            $this->id = $id;
+            // $this->type_id = $type_id;
+            // $this->id = $id;
         }
 
         function getName()
@@ -47,25 +47,40 @@
             $this->stars = (int) $new_stars;
         }
 
-        function getTypeId()
-        {
-            $return $this->type_id;
+        static function getAll(){
+            $returned_restaurants = $GLOBALS['DB']->query('SELECT * FROM restaurants;');
+            $restaurants = array();
+            foreach($returned_restaurants as $restaurant)
+            {
+                $name = $restaurant['name'];
+                $review = $restaurant['review'];
+                $stars = $restaurant['stars'];
+                $new_restaurant = new Restaurant($name, $review, $stars);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
+
         }
 
-        function setTypeId($new_type_id)
-        {
-            $this->type_id = (int) $new_type_id;
-        }
-
-        function getId()
-        {
-            return $this->id;
-        }
-
-        function setId($new_id)
-        {
-            $this->id = (int) $new_id;
-        }
+        // function getTypeId()
+        // {
+        //     $return $this->type_id;
+        // }
+        //
+        // function setTypeId($new_type_id)
+        // {
+        //     $this->type_id = (int) $new_type_id;
+        // }
+        //
+        // function getId()
+        // {
+        //     return $this->id;
+        // }
+        //
+        // function setId($new_id)
+        // {
+        //     $this->id = (int) $new_id;
+        // }
     }
 
 ?>
