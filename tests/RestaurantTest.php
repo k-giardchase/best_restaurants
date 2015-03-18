@@ -45,12 +45,33 @@
 
             $test_restaurant1->save();
             $test_restaurant2->save();
+            $result = Restaurant::getAll();
 
             //Assert
-            $result = Restaurant::getAll();
             $this->assertEquals([$test_restaurant1, $test_restaurant2], $result);
 
+        }
 
+        function test_deleteAll()
+        {
+            //Arrange
+            $name1 = "Le Restaurante";
+            $review1 = "Awful";
+            $stars1 = 1;
+            $name2 = "El Perrito";
+            $review2 = "Sublime";
+            $stars2 = 16;
+            $test_restaurant1 = new Restaurant($name1, $review1, $stars1);
+            $test_restaurant2 = new Restaurant($name2, $review2, $stars2);
+            $test_restaurant1->save();
+            $test_restaurant2->save();
+
+            //Act
+            Restaurant::deleteAll();
+
+            //Assert
+            $return = Restaurant::getAll();
+            $this->assertEquals([], $result);
         }
 
     }

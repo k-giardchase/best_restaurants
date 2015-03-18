@@ -8,7 +8,7 @@
         // private $type_id;
         // private $id;
 
-        function __construct($name, $review, $stars, /*$type_id, $id = null*/)
+        function __construct($name, $review, $stars /*$type_id, $id = null*/)
         {
             $this->name = $name;
             $this->review = $review;
@@ -48,7 +48,7 @@
         }
 
         function save(){
-            $GLOBALS['DB']->exec("INSERT INTO restaurants (name, review, stars) VALUES ('{$this->getName()}', '{$this->getReview()}', {this->getStars()});");
+            $GLOBALS['DB']->exec("INSERT INTO restaurants (name, review, stars) VALUES ('{$this->getName()}', '{$this->getReview()}', {$this->getStars()});");
         }
 
         static function getAll(){
