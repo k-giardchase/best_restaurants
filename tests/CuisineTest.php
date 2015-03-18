@@ -6,17 +6,18 @@
     */
 
     require_once __DIR__."/../src/Cuisine.php";
-    // require_once __DIR__."/../src/Restaurant.php";
+    require_once __DIR__."/../src/Restaurant.php";
 
     $DB = new PDO('pgsql:host=localhost;dbname=best_restaurants_test');
 
     class CuisineTest extends PHPUnit_Framework_TestCase
     {
 
-        // protected function tearDown()
-        // {
-        //     Cuisine::deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Cuisine::deleteAll();
+            Restaurant::deleteAll();
+        }
 
         function test_getType()
         {
@@ -32,7 +33,7 @@
             $this->assertEquals($type, $result);
         }
 
-        function getId()
+        function test_getId()
         {
             //Arrange
             $type = "Mexican";
@@ -47,7 +48,7 @@
             $this->assertEquals(2, $result);
         }
 
-        function save()
+        function test_save()
         {
             //Arrange
             $type = "Italian";
@@ -64,6 +65,45 @@
             $result = Cuisine::getAll();
             $this->assertEquals([$test_cuisine, $test_cuisine2], $result);
         }
+
+        function test_getAll()
+        {
+            //Arrange
+            $type = "Martian";
+            $id = null;
+            $type2 = "Argentine";
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine2 = new Cuisine($type2, $id);
+            $test_cuisine->save();
+            $test_cuisine2->save();
+
+            //Act
+            $result = Cuisine::getAll();
+
+            //Assert
+            $this->assertEquals([$test_cuisine, $test_cuisine2], $result);
+        }
+
+        function test_deleteAll()
+        {
+            //Arrange
+            $type = "Wash the dog";
+            $id = null;
+            $type2 = "Home stuff";
+            $id2 = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+            $test_cuisine2 = new Cuisine($type2, $id2);
+            $test_cuisine2->save();
+
+            //Act
+            Cuisine::deleteAll();
+            $result = Cuisine::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
 
 
 

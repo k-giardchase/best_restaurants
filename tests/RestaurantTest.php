@@ -6,7 +6,7 @@
     * @backupStaticAttributes disabled
     */
 
-    // require_once __DIR__."/../src/Cuisine.php";
+    require_once __DIR__."/../src/Cuisine.php";
     require_once __DIR__."/../src/Restaurant.php";
 
     $DB = new PDO('pgsql:host=localhost;dbname=best_restaurants_test');
@@ -16,6 +16,7 @@
         protected function tearDown()
         {
             Restaurant::deleteAll();
+            Cuisine::deleteAll();
         }
 
         function test_save()
