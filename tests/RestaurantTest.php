@@ -116,6 +116,28 @@
 
         }
 
+        function test_find()
+        {
+            //Arrange
+            $name = "Tacos";
+            $review = "Great tacos";
+            $stars = 5;
+            $id = null;
+            $test_restaurant = new Restaurant($name, $review, $stars, $id);
+            $name2 = "Lasagna";
+            $review2 = "Bad lasagna";
+            $stars2 = 1;
+            $test_restaurant2 = new Restaurant($name2, $review2, $stars2, $id);
+            $test_restaurant->save();
+            $test_restaurant2->save();
+
+            //Act
+            $result = Restaurant::find($test_restaurant->getId());
+
+            //Assert
+            $this->assertEquals($test_restaurant, $result);
+        }
+
 
 
     }
