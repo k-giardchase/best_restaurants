@@ -79,6 +79,24 @@
             $this->assertEquals([], $result);
         }
 
+        function test_getId()
+        {
+            //Arrange
+            $name = "Le Restaurante";
+            $review = "Better than I remember";
+            $stars = 3;
+            $id = 1;
+            $test_restaurant = new Restaurant($name, $review, $stars, $id);
+
+            //Act
+            $result = $test_restaurant->getId();
+
+            //Assert
+            $this->assertEquals(1, $result);
+        }
+
+
+
     }
 
 
