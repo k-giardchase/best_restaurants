@@ -8,13 +8,13 @@
         // private $type_id;
         // private $id;
 
-        function __construct($name, $review, $stars /*$type_id, $id = null*/)
+        function __construct($name, $review, $stars, $id = null /*$type_id, */)
         {
             $this->name = $name;
             $this->review = $review;
             $this->stars = $stars;
             // $this->type_id = $type_id;
-            // $this->id = $id;
+            $this->id = $id;
         }
 
         function getName()
@@ -47,6 +47,26 @@
             $this->stars = (int) $new_stars;
         }
 
+        // function getTypeId()
+        // {
+        //     $return $this->type_id;
+        // }
+        //
+        // function setTypeId($new_type_id)
+        // {
+        //     $this->type_id = (int) $new_type_id;
+        // }
+        //
+        function getId()
+        {
+            return $this->id;
+        }
+
+        function setId($new_id)
+        {
+            $this->id = (int) $new_id;
+        }
+
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO restaurants (name, review, stars) VALUES ('{$this->getName()}', '{$this->getReview()}', {$this->getStars()});");
@@ -72,26 +92,6 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM restaurants *;");
         }
-
-        // function getTypeId()
-        // {
-        //     $return $this->type_id;
-        // }
-        //
-        // function setTypeId($new_type_id)
-        // {
-        //     $this->type_id = (int) $new_type_id;
-        // }
-        //
-        // function getId()
-        // {
-        //     return $this->id;
-        // }
-        //
-        // function setId($new_id)
-        // {
-        //     $this->id = (int) $new_id;
-        // }
     }
 
 ?>
