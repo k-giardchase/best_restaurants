@@ -47,6 +47,10 @@
             $this->stars = (int) $new_stars;
         }
 
+        function save(){
+            $GLOBALS['DB']->exec("INSERT INTO restaurants (name, review, stars) VALUES ('{$this->getName()}', '{$this->getReview()}', {this->getStars()});");
+        }
+
         static function getAll(){
             $returned_restaurants = $GLOBALS['DB']->query('SELECT * FROM restaurants;');
             $restaurants = array();
