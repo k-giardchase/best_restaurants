@@ -28,6 +28,31 @@
             $result = Restaurant::getAll();
             $this->assertEquals($test_restaurant, $result[0]);
         }
+
+        function test_getAll()
+        {
+            //Arrange
+            $name1 = "Le Restaurante";
+            $review1 = "Awful";
+            $stars1 = 1;
+            $name2 = "El Perrito";
+            $review2 = "Sublime";
+            $stars2 = 16;
+            $test_restaurant1 = new Restaurant($name1, $review1, $stars1);
+            $test_restaurant2 = new Restaurant($name2, $review2, $stars2);
+
+            //Act
+
+            $test_restaurant1->save();
+            $test_restaurant2->save();
+
+            //Assert
+            $result = Restaurant::getAll();
+            $this->assertEquals([$test_restaurant1, $test_restaurant2], $result);
+
+
+        }
+
     }
 
 
