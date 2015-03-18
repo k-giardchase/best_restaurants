@@ -5,23 +5,38 @@
     * @backupStaticAttributes disabled
     */
 
-    // require_once __DIR__."/../src/Cuisine.php";
-    // // require_once __DIR__."/../src/Restaurant.php";
-    //
-    // $DB = new PDO('pgsql:host=localhost;dbname=best_restaurants_test');
-    //
-    // class CuisineTest extends PHPUnit_Framework_TestCase
-    // {
+    require_once __DIR__."/../src/Cuisine.php";
+    // require_once __DIR__."/../src/Restaurant.php";
 
-        // protected function tearDown(){
+    $DB = new PDO('pgsql:host=localhost;dbname=best_restaurants_test');
+
+    class CuisineTest extends PHPUnit_Framework_TestCase
+    {
+
+        // protected function tearDown()
+        // {
         //     Cuisine::deleteAll();
         // }
 
+        function test_getType()
+        {
+            //Arrange
+            $type = "Mexican";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+
+            //Act
+            $result = $test_cuisine->getType();
+
+            //Assert
+            $this->assertEquals($type, $result);
+        }
 
 
 
 
-    // }
+
+    }
 
 
 ?>
