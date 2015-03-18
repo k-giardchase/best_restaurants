@@ -50,6 +50,22 @@
 
         }
 
+        function getRestaurants()
+        {
+            $restaurants = array();
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE type_id = {$this->getId()};");
+            foreach($returned_restaurants as $restaurant){
+                $name = $restaurant['name'];
+                $review = $restaurant['review'];
+                $stars = $restaurant['stars'];
+                $id = $restaurant['id'];
+                $type_id = $restaurant['type_id'];
+                $new_restaurant = new Restaurant($name, $review, $stars, $id, $type_id);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
+        }
+
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM cuisines *;");
@@ -67,6 +83,7 @@
             }
             return $found_cuisine;
         }
+
 
 
     }

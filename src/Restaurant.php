@@ -5,16 +5,16 @@
         private $name;
         private $review;
         private $stars;
-        // private $type_id;
+        private $type_id;
         private $id;
 
-        function __construct($name, $review, $stars, $id = null /*$type_id, */)
+        function __construct($name, $review, $stars, $id = null, $type_id)
         {
             $this->name = $name;
             $this->review = $review;
             $this->stars = $stars;
-            // $this->type_id = $type_id;
             $this->id = $id;
+            $this->type_id = $type_id;
         }
 
         function getName()
@@ -47,16 +47,6 @@
             $this->stars = (int) $new_stars;
         }
 
-        // function getTypeId()
-        // {
-        //     $return $this->type_id;
-        // }
-        //
-        // function setTypeId($new_type_id)
-        // {
-        //     $this->type_id = (int) $new_type_id;
-        // }
-        //
         function getId()
         {
             return $this->id;
@@ -67,9 +57,19 @@
             $this->id = (int) $new_id;
         }
 
+        function getTypeId()
+        {
+            $return $this->type_id;
+        }
+
+        function setTypeId($new_type_id)
+        {
+            $this->type_id = (int) $new_type_id;
+        }
+
         function save()
         {
-            $statement = $GLOBALS['DB']->query("INSERT INTO restaurants (name, review, stars) VALUES ('{$this->getName()}', '{$this->getReview()}', {$this->getStars()}) RETURNING id;");
+            $statement = $GLOBALS['DB']->query("INSERT INTO restaurants (name, review, stars) VALUES ('{$this->getName()}', '{$this->getReview()}', {$this->getStars()}, {$this->getTypeId()}) RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
         }
@@ -84,7 +84,8 @@
                 $review = $restaurant['review'];
                 $stars = $restaurant['stars'];
                 $id = $restaurant['id'];
-                $new_restaurant = new Restaurant($name, $review, $stars, $id);
+                $type_id = $restaurant['type_id'];
+                $new_restaurant = new Restaurant($name, $review, $stars, $id, $type_id);
                 array_push($restaurants, $new_restaurant);
             }
             return $restaurants;
