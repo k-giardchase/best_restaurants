@@ -24,7 +24,8 @@
             $name = "Le Restaurante";
             $review = "Wow this is le awful";
             $stars = 1;
-            $test_restaurant = new Restaurant($name, $review, $stars);
+            $id = null;
+            $test_restaurant = new Restaurant($name, $review, $stars, $id);
 
             //Act
             $test_restaurant->save();
@@ -40,11 +41,12 @@
             $name1 = "Le Restaurante";
             $review1 = "Awful";
             $stars1 = 1;
+            $id = null;
             $name2 = "El Perrito";
             $review2 = "Sublime";
             $stars2 = 16;
-            $test_restaurant1 = new Restaurant($name1, $review1, $stars1);
-            $test_restaurant2 = new Restaurant($name2, $review2, $stars2);
+            $test_restaurant1 = new Restaurant($name1, $review1, $stars1, $id);
+            $test_restaurant2 = new Restaurant($name2, $review2, $stars2, $id);
 
             //Act
 
@@ -63,11 +65,12 @@
             $name1 = "Le Restaurante";
             $review1 = "Awful";
             $stars1 = 1;
+            $id = null;
             $name2 = "El Perrito";
             $review2 = "Sublime";
             $stars2 = 16;
-            $test_restaurant1 = new Restaurant($name1, $review1, $stars1);
-            $test_restaurant2 = new Restaurant($name2, $review2, $stars2);
+            $test_restaurant1 = new Restaurant($name1, $review1, $stars1, $id);
+            $test_restaurant2 = new Restaurant($name2, $review2, $stars2, $id);
             $test_restaurant1->save();
             $test_restaurant2->save();
 
@@ -93,6 +96,24 @@
 
             //Assert
             $this->assertEquals(1, $result);
+        }
+
+        function test_setId()
+        {
+            //Arrange
+            $name = "La Restaurante";
+            $review = "Neat";
+            $stars = 3;
+            $id = null;
+            $test_restaurant = new Restaurant($name, $review, $stars, $id);
+
+            //Act
+            $test_restaurant->setId(2);
+
+            //Assert
+            $result = $test_restaurant->getId();
+            $this->assertEquals(2, $result);
+
         }
 
 
