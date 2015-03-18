@@ -13,6 +13,11 @@
 
     class RestaurantTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Restaurant::deleteAll();
+        }
+
         function test_save()
         {
             //Arrange
@@ -70,7 +75,7 @@
             Restaurant::deleteAll();
 
             //Assert
-            $return = Restaurant::getAll();
+            $result = Restaurant::getAll();
             $this->assertEquals([], $result);
         }
 
