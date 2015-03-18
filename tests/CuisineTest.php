@@ -47,7 +47,23 @@
             $this->assertEquals(2, $result);
         }
 
+        function save()
+        {
+            //Arrange
+            $type = "Italian";
+            $id = null;
+            $type2 = "Ethiopian";
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine2 = new Cuisine($type2, $id);
 
+            //Act
+            $test_cuisine->save();
+            $test_cuisine2->save();
+
+            //Assert
+            $result = Cuisine::getAll();
+            $this->assertEquals([$test_cuisine, $test_cuisine2], $result);
+        }
 
 
 
