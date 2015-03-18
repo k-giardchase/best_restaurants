@@ -31,13 +31,13 @@
         }
 
         function save(){
-            $statement = $GLOBALS['DB']->query("INSERT INTO categories (type) VALUES ('{$this->getType()}') RETURNING id;");
+            $statement = $GLOBALS['DB']->query("INSERT INTO cuisines (type) VALUES ('{$this->getType()}') RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
         }
 
         static function getAll(){
-            
+
         }
 
 

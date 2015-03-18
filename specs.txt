@@ -1,0 +1,62 @@
+OVERVIEW
+========================
+Create an app where users can add their favorite restaurants by the type of cuisine that they offer.
+
+    For example:
+    Input Category: French
+        Input Restaurant: Le Restaurant
+
+    Input Category: Mexican
+        Input Restaurant: El Restaurante
+
+    Search Categories: French
+        Output: Le Restaurant
+
+
+
+
+SPECS - WHAT
+===========================
+1. User inputs a cuisine category and the app displays the category on the page.
+
+    INPUT: French
+    OUTPUT: French
+
+2. User inputs second category, app returns both categories.
+
+    INPUT: French
+    INPUT: Salad Bar
+    OUTPUT: Sald Bar, French
+
+3. User adds restaurant under available category and returns restaurant under category.
+        INPUT: Le Restaurant
+        IN CATEGORY: French
+        OUTPUT FRENCH RESTAURANTS: Le Restaurant
+
+4. User adds second restaurant under available category and app returns both restaurants if they're in the same category.
+    INPUT1: Le Restaurant
+    IN CATEGORY: French
+    INPUT2: Le Gato
+    IN CATEGORY: French
+    OUTPUT FRENCH RESTAURANTS: Le Restaurant, Le Gato
+
+5. User adds two restaurants under separate categories and app returns each restaurant in separate categories.
+    INPUT1: Le Restaurant
+    IN CATEGORY: French
+    INPUT2: Perro
+    IN CATEGORY: Mexican
+    OUTPUT FRENCH RESTAURANTS: Le Restaurant
+    OUTPUT MEXICAN RESTAURANTS: Perro
+
+6. User deletes all restaurants from a single category.
+    INPUT: Delete All
+    IN CATEGORY: French
+    OUTPUT: Nothing.
+
+7.User deletes all
+
+
+
+
+SPECS - HOW
+===========================
