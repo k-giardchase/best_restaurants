@@ -59,7 +59,7 @@
 
         function getTypeId()
         {
-            $return $this->type_id;
+            return $this->type_id;
         }
 
         function setTypeId($new_type_id)
