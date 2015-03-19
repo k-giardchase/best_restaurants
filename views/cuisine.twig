@@ -4,6 +4,7 @@
 </head>
 <body>
     <h1>{{ cuisines.getType }}</h1>
+    <p><a href="/cuisine/{{ cuisines.getId }}/edit">Edit this cuisine</a></p>
     <h4>Add a restaurant</h4>
 
     <form action ="/restaurants" method="post">
@@ -20,29 +21,22 @@
         <button type="submit">Add Restaurant</button>
     </form>
 
-    <form action="/cuisine_edit" method="post">
-        <button type="submit">Edit Cuisine</button>
-    </form>
-
-    <form action="/delete_restaurants" method="post">
-        <button type="submit">Delete All</button>
-    </form>
-
-    <p><a href="/cuisine/{{ cuisine.getId }}/edit">Edit this cuisine</a></p>
-    <p><a href='/'>Home</a></p>
-
-
     {% if restaurants is not empty %}
-    <p> Here are all of the restaurants for this type of cuisine</p>
+    <p> Here are all of the restaurant(s) for this type of cuisine</p>
     <ul>
         {% for restaurant in restaurants %}
-            <li>{{ restaurant.getName }}</li>
+            <h4>{{ restaurant.getName }}</h4>
             <li>{{ restaurant.getReview }}</li>
             <li>{{ restaurant.getStars }}</li>
         {% endfor %}
     </ul>
     {% endif %}
 
+    <form action="/delete_restaurants" method="post">
+        <button type="submit">Delete All</button>
+    </form>
+
+    <p><a href='/'>Home</a></p>
 
 </body>
 </html>

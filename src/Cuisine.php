@@ -71,6 +71,12 @@
             $GLOBALS['DB']->exec("DELETE FROM cuisines *;");
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE type_id = {$this->getId()};");
+        }
+
         static function find($search_id)
         {
             $found_cuisine = null;
