@@ -21,7 +21,7 @@
 
     $app->get('/cuisines/{id}', function($id) use ($app){
         $cuisine = Cuisine::find($id);
-        return $app['twig']->render('cuisines.twig', array('cuisines' => $cuisine, 'restaurants' => $category->getRestaurants()));
+        return $app['twig']->render('cuisines.twig', array('cuisines' => $cuisine, 'restaurants' => $cuisine->getRestaurants()));
     });
 
     $app->post('/cuisines', function() use ($app){
