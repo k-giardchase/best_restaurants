@@ -12,15 +12,22 @@
 
     //HOME
     $app->get('/', function() use($app) {
-        return $app['twig']->render('index.twig');
+        return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
     });
 
     $app->get('/restaurants', function() use($app){
         return $app['twig']->render('restaurants.twig', array('restaurants' => Restaurant::getAll()));
     });
 
-    $app->get('/cuisines', function() use ($app){
-        return $app['twig']->render('cuisines.twig', array('cuisines' => Cuisine::getAll()));
+    $app->get('/cuisines/{id}', function($id) use ($app){
+        $cuisine = Cuisine::find($id);
+        return $app['twig']->render('cuisines.twig', array('cuisines' => $cuisine, 'restaurants' => $category->getRestaurants()));
+    });
+
+    $app->post('/cuisines', function() use ($app){
+        $cuisine = new Cuisine($_POST['type']);
+        $cuisine->save();
+        return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
     });
 
     $app->post("/restaurants", function() use ($app){
