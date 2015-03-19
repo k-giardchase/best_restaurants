@@ -8,13 +8,14 @@
         private $type_id;
         private $id;
 
-        function __construct($name, $review, $stars, $id = null, $type_id)
+        function __construct($name, $review, $stars, $type_id, $id = null)
         {
             $this->name = $name;
             $this->review = $review;
             $this->stars = $stars;
-            $this->id = $id;
             $this->type_id = $type_id;
+            $this->id = $id;
+
         }
 
         function getName()
@@ -69,7 +70,7 @@
 
         function save()
         {
-            $statement = $GLOBALS['DB']->query("INSERT INTO restaurants (name, review, stars) VALUES ('{$this->getName()}', '{$this->getReview()}', {$this->getStars()}, {$this->getTypeId()}) RETURNING id;");
+            $statement = $GLOBALS['DB']->query("INSERT INTO restaurants (name, review, stars, type_id) VALUES ('{$this->getName()}', '{$this->getReview()}', {$this->getStars()}, {$this->getTypeId()}) RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
         }
@@ -83,9 +84,9 @@
                 $name = $restaurant['name'];
                 $review = $restaurant['review'];
                 $stars = $restaurant['stars'];
-                $id = $restaurant['id'];
                 $type_id = $restaurant['type_id'];
-                $new_restaurant = new Restaurant($name, $review, $stars, $id, $type_id);
+                $id = $restaurant['id'];
+                $new_restaurant = new Restaurant($name, $review, $stars, $type_id, $id);
                 array_push($restaurants, $new_restaurant);
             }
             return $restaurants;

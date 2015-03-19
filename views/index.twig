@@ -7,20 +7,25 @@
 
     <p>Create a new cuisine type:</p>
 
-    <form action="/cuisines" method="post">
+    <form action="/cuisine" method="post">
         <label for="type">Type of cuisine:</label>
         <input id="type" name="type" type="text">
         <button type="submit">Add cuisine</button>
     </form>
 
     {% if cuisines is not empty %}
+    <ul>
         {% for cuisine in cuisines %}
-        <ul>
-            <<li><a href="/cuisines/{{ cuisine.getId }}">{{ cuisine.getName }}</a></li>
+            <li><a href="/cuisine/{{ cuisine.getId }}">{{ cuisine.getType }}</a></li>
         {% endfor %}
-        </ul>
+    </ul>
     {% else %}
-        <p>There are no cuisine types to display!</p>
+
+    <p>There are no cuisine types to display!</p>
     {% endif %}
+
+    <form action="/delete_cuisines" method="post">
+        <button type="submit">Delete cuisines</button>
+    </form>
 </body>
 </html>

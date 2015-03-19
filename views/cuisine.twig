@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Restaurant List</title>
+</head>
+<body>
+    <h1>{{ cuisines.getType }}</h1>
+    <h4>Add a restaurant</h4>
+
+    <form action ="/restaurants" method="post">
+        <input id="type_id" name="type_id" type="hidden" value="{{ cuisines.getId() }}">
+        <label for 'name'>Restaurant Name</label>
+        <input id='name' name='name' type='text'>
+        <br>
+        <label for 'review'>Review</label>
+        <textarea  id='review' name='review' rows="4" cols="50"></textarea>
+        <br>
+        <label for 'stars'>Stars</label>
+        <input id='stars' name='stars' type='int'>
+
+        <button type="submit">Add Restaurant</button>
+    </form>
+
+    <form action="/cuisine_edit" method="post">
+        <button type="submit">Edit Cuisine</button>
+    </form>
+
+    <form action="/delete_restaurants" method="post">
+        <button type="submit">Delete All</button>
+    </form>
+
+    <p><a href="/cuisine/{{ cuisine.getId }}/edit">Edit this cuisine</a></p>
+    <p><a href='/'>Home</a></p>
+
+
+    {% if restaurants is not empty %}
+    <p> Here are all of the restaurants for this type of cuisine</p>
+    <ul>
+        {% for restaurant in restaurants %}
+            <li>{{ restaurant.getName }}</li>
+            <li>{{ restaurant.getReview }}</li>
+            <li>{{ restaurant.getStars }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+</body>
+</html>
