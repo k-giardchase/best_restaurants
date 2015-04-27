@@ -2,8 +2,8 @@
 
     class Cuisine
     {
-            private $type;
-            private $id;
+        private $type;
+        private $id;
 
         function __construct($type, $id=null)
         {
@@ -15,6 +15,7 @@
         {
             return $this->type;
         }
+
         function setType($new_type)
         {
             $this->type = (string) $new_type;
@@ -30,13 +31,15 @@
             $this->id = (int) $new_id;
         }
 
-        function save(){
+        function save()
+        {
             $statement = $GLOBALS['DB']->query("INSERT INTO cuisines (type) VALUES ('{$this->getType()}') RETURNING id;");
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $this->setId($result['id']);
         }
 
-        static function getAll(){
+        static function getAll()
+        {
             $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisines ;");
             $cuisines = array();
             foreach ($returned_cuisines as $cuisine)
@@ -47,7 +50,6 @@
                 array_push($cuisines, $new_cuisine);
             }
             return $cuisines;
-
         }
 
         function getRestaurants()
@@ -95,8 +97,6 @@
             $GLOBALS['DB']->exec("UPDATE cuisines SET type = '{$new_type}' WHERE id = {$this->getId()};");
             $this->setType($new_type);
         }
-
-
     }
 
 ?>
